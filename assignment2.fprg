@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="3.0">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="A"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2023-01-10 09:46:42 pm"/>
+        <attribute name="created" value="QTtERVNLVE9QLThVNDJPTzY7MjAyMy0wMS0wOTswOTozNjoxOCBwbTsyNDU1"/>
+        <attribute name="edited" value="QTtERVNLVE9QLThVNDJPTzY7MjAyMy0wMS0xMDswOTo0Njo0MiBwbTsyOzI1NTQ="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="totalcost" type="Integer" array="False" size=""/>
+            <input variable="totalcost"/>
+            <declare name="salary" type="Integer" array="False" size=""/>
+            <input variable="salary"/>
+            <declare name="portionsave" type="Real" array="False" size=""/>
+            <input variable="portionsave"/>
+            <declare name="semiraise" type="Real" array="False" size=""/>
+            <input variable="semiraise"/>
+            <declare name="r" type="Real" array="False" size=""/>
+            <assign variable="r" expression="0.04"/>
+            <declare name="downpay" type="Integer" array="False" size=""/>
+            <assign variable="downpay" expression="totalcost*0.25"/>
+            <declare name="currentsave" type="Integer" array="False" size=""/>
+            <assign variable="currentsave" expression="0"/>
+            <declare name="monthlysal" type="Integer" array="False" size=""/>
+            <assign variable="monthlysal" expression="salary/12"/>
+            <assign variable="portionsave" expression="portionsave*monthlysal"/>
+            <declare name="months" type="Integer" array="False" size=""/>
+            <assign variable="months" expression="0"/>
+            <while expression="currentsave&lt;=downpay">
+                <if expression="months%6==0">
+                    <then>
+                        <assign variable="salary" expression="salary+(salary*semiraise)"/>
+                        <assign variable="currentsave" expression="currentsave+((salary*portionsave)/12)+(currentsave*r/12)"/>
+                        <assign variable="months" expression="months+1"/>
+                    </then>
+                    <else>
+                        <assign variable="currentsave" expression="currentsave+portionsave+(currentsave*r/12)"/>
+                        <assign variable="months" expression="months+1"/>
+                    </else>
+                </if>
+            </while>
+            <output expression="months" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>
